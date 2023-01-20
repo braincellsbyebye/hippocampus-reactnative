@@ -6,7 +6,7 @@ const LoginFormScreen = ( {navigation} ) => {
   const [pw, setPw] = useState();
 
   const myfun = async () => {
-    await fetch('http://10.0.2.2:8000/api/mlogin', {
+    await fetch('http://10.0.2.2:8000/api/jwtlogin', {
       method:'POST',
       headers:{
         'Accept':'application/json',
@@ -19,11 +19,12 @@ const LoginFormScreen = ( {navigation} ) => {
         alert('Login Credentials do not match')
         console.log(resData)
       } else {
-        global.id = resData.id
-        global.username = resData.username
-        global.email = resData.email
-        global.fname = resData.fname
-        global.lname = resData.lname
+        global.id = resData.user.id
+        global.username = resData.user.name
+        global.email = resData.user.email
+        global.fname = resData.user.fname
+        global.lname = resData.user.lname
+        global.token = resData.authorisation.token
         setEmail('');
         setPw('');
         navigation.navigate('Index')

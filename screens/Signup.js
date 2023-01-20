@@ -16,14 +16,14 @@ const Signup = ( {navigation} ) => {
 
     const AddUser = async () => {
         try{
-            const response = await fetch('http://10.0.2.2:8000/api/mregister', {
+            const response = await fetch('http://10.0.2.2:8000/api/jwtregister', {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    username: name,
+                    name: name,
                     fname: fname,
                     lname: lname,
                     email: email,

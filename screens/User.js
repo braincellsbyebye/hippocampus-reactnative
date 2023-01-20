@@ -2,31 +2,12 @@ import React, {useState, useEffect} from 'react';
 import {View, StyleSheet, Text, Image, TouchableOpacity, Alert} from 'react-native';
 
 const UserScreen = ( {navigation} ) => {
-    const [data, setData] = useState("");
-    const [isLoading, setLoading] = useState("");
-    let parameter = global.id
-
-    const getUserDetails = async () => {
-        try {
-        const response = await fetch(`http://10.0.2.2:8000/api/edit/${parameter}`);
-        const json = await response.json();
-        setData(json.useracc);
-        } catch (error) {
-        console.error(error);
-        } finally {
-        setLoading(false);
-        }
-    }
-
-    useEffect(() => {
-        getUserDetails();
-    }, []);
     return(
         <View style={{ flex:1, }}>
             <View style = {{ backgroundColor: "#011387",flex: 0.4, justifyContent: 'center', alignItems: 'center'}}>
                 <Image style={styles.gt2} source = { require('../images/userpic.png')}/>
-                <Text style = {{ fontSize: 18, color: 'white'}}>{data.username}</Text>
-                <Text style = {{ fontSize: 11, color: 'white'}}>{data.email}</Text>
+                <Text style = {{ fontSize: 18, color: 'white'}}>{global.username}</Text>
+                <Text style = {{ fontSize: 11, color: 'white'}}>{global.email}</Text>
                 <TouchableOpacity onPress={() => navigation.navigate('UserProfile')}>
                     <View style={styles.editprof}>
                         <Text style={{ fontWeight:'bold', color: 'black', }}>Edit Profile</Text>

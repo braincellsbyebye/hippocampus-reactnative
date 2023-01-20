@@ -8,7 +8,7 @@ const HScreen = ( {navigation} ) => {
                 <Text style = {{ fontSize: 18, color: 'white', marginTop: 10, marginLeft: 10}}>WELCOME!</Text>
                 <Image style={styles.gt2} source = { require('../images/hannah.png')}/>
                 <Text style = {styles.gt3}>{global.username}</Text>
-                <Text style = {styles.gt4}>{global.email}</Text>
+                <Text style = {styles.gt4}>{{data.email}}</Text>
                 <TouchableOpacity  onPress={() => navigation.navigate('Notification')}>
                     <Image style={styles.gt5} source = { require('../images/bell.png')}/>
                 </TouchableOpacity>

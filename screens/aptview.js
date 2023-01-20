@@ -24,7 +24,12 @@ const AptView = ( {navigation} ) => {
 
     const gettime = async () => {
         try {
-        const response = await fetch(`http://10.0.2.2:8000/api/allapt`);
+        const response = await fetch(`http://10.0.2.2:8000/api/allapt`,{
+            method: 'GET',
+            headers: {
+                Authorization: 'Bearer ' + token
+            },
+        });
         const json = await response.json();
         const selectTime = json.apt.map((apt) => ({
             label: apt.apttime,
@@ -96,7 +101,12 @@ const AptView = ( {navigation} ) => {
 
     const getApt = async () => {
         try {
-        const response = await fetch('http://10.0.2.2:8000/api/appointment');
+        const response = await fetch('http://10.0.2.2:8000/api/appointment',{
+            method: 'GET',
+            headers: {
+                Authorization: 'Bearer ' + token
+            },
+        });
         const json = await response.json();
         setData(json.appointment);
         } catch (error) {
@@ -117,7 +127,8 @@ const AptView = ( {navigation} ) => {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ' + token
                 },
                 body: JSON.stringify({
                     fname: y,
@@ -148,7 +159,8 @@ const AptView = ( {navigation} ) => {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ' + token
                 },
                 body: JSON.stringify({
                     fname: y,

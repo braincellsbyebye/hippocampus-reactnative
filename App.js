@@ -19,6 +19,7 @@ import NewPw from './screens/NewPw';
 import DoctorScreen from './screens/Doctor';
 import DoctorOne from './screens/doctorone';
 import DoctorTwo from './screens/DoctorTwo';
+import FillUpReqMed from './screens/fillupmed';
 
 const Stack = createNativeStackNavigator();
 
@@ -47,6 +48,7 @@ const MyStack = () => {
         <Stack.Screen name="UserProfile" component={UserProfile} />
         <Stack.Screen name="UpdatePw" component={UpdatePw} />
         <Stack.Screen name="NewPw" component={NewPw} />
+        <Stack.Screen name="Fillup" component={FillUpReqMed} />
       </Stack.Navigator>
     </NavigationContainer>
   );

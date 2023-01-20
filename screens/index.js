@@ -6,10 +6,16 @@ const IndexScreen = ( {navigation} ) => {
     const [data, setData] = useState([]);
 
     let parameter = global.id
+    let x = global.token
 
     const getApt = async () => {
         try {
-        const response = await fetch(`http://10.0.2.2:8000/api/apt/${parameter}`);
+        const response = await fetch(`http://10.0.2.2:8000/api/apt/${parameter}`, {
+            method: 'GET',
+            headers: {
+                Authorization: 'Bearer ' + x
+            },
+        });
         const json = await response.json();
         setData(json.appointment);
         } catch (error) {
@@ -19,37 +25,21 @@ const IndexScreen = ( {navigation} ) => {
         }
     }
 
-    const [userdata, setUserData] = useState("");
-
-    const getUserDetails = async () => {
-        try {
-        const response = await fetch(`http://10.0.2.2:8000/api/edit/${parameter}`);
-        const json = await response.json();
-        setUserData(json.useracc);
-        } catch (error) {
-        console.error(error);
-        } finally {
-        setLoading(false);
-        }
-    }
-
     const refresh =  () => {
         setLoading(true);
-        getUserDetails();
         getApt();
       }
 
     useEffect(() => {
         getApt();
-        getUserDetails();
     }, []);
     return(
         <View style={{ flex:1, }}>
             <View style = {{ backgroundColor: "#011387",flex: 0.5}}>
                 <Text style = {{ fontSize: 18, color: 'white', marginTop: 10, marginLeft: 10}}>WELCOME!</Text>
                 <Image style={styles.gt2} source = { require('../images/userpic.png')}/>
-                <Text style = {styles.gt3}>{userdata.username}</Text>
-                <Text style = {styles.gt4}>{userdata.email}</Text>
+                <Text style = {styles.gt3}>{global.username}</Text>
+                <Text style = {styles.gt4}>{global.email}</Text>
                 <Image style={styles.gt5} source = { require('../images/logo2.png')}/>
             </View>
             <View style = {{ backgroundColor: "white",flex: 1, borderRadius:20, marginTop: -95, alignItems:'center'}}>
