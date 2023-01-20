@@ -45,6 +45,7 @@ const MedCert = ( {navigation} ) => {
                 )}
             />
             )}
+            <Text>Test</Text>
             <Text style={{ marginTop: -20, marginLeft: 122,width: 125, backgroundColor: '#f1f1ee' }}></Text>
             {isLoading ? <ActivityIndicator/> : (
             <FlatList
