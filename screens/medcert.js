@@ -30,9 +30,9 @@ const MedCert = ( {navigation} ) => {
   }, []);
 
     return(
-        <View style = {{ padding: 30 }}>
+        <View style = {{ marginTop: 70,padding: 30 }}>
           <Text style={styles.headerText}>Medical Certificate</Text>
-          <Text style={{ marginLeft: 10, color: 'black' }}>Date: </Text> 
+          <Text style={{ marginTop:10, marginLeft: 10, color: 'black' }}>Date: </Text> 
           {isLoading ? <ActivityIndicator/> : (
             <FlatList
                 style = {{ marginTop: -19, marginLeft: 50 }}
@@ -45,26 +45,44 @@ const MedCert = ( {navigation} ) => {
                 )}
             />
             )}
-            <Text>Test</Text>
             <Text style={{ marginTop: -20, marginLeft: 122,width: 125, backgroundColor: '#f1f1ee' }}></Text>
+            <Text style={{ color: 'black', margin: 10 }}>The following details stated below has been verified by the indicated residential doctor</Text>
             {isLoading ? <ActivityIndicator/> : (
             <FlatList
                 data={data}
+                style={{ alignSelf: 'center' }}
                 keyExtractor={({ id }, index) => id}
                 renderItem={({ item }) => (
                     <View>
                         <Text style = {{ color: 'black' }}>
-                          Name: {item.fname}, {item.lname} {'\n'} 
-                          Purpose: {item.purpose} {'\n'} 
-                          Decision: {item.verdict} {'\n'} 
-                          Diagnosis: {item.diagnosis} {'\n'} 
-                          Doctor: {item.doctor} {'\n'} 
-                          Date Issued: {item.date}
+                          Name: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{item.fname}, {item.lname} {'\n'} 
+                          Purpose: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{item.purpose} {'\n'} 
+                          Decision: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{item.verdict} {'\n'} 
+                          Diagnosis: &nbsp;&nbsp;&nbsp;&nbsp;{item.diagnosis} {'\n'} 
+                          Date Issued: &nbsp;{item.date}
                         </Text>
                     </View>
                 )}
             />
             )}
+            {isLoading ? <ActivityIndicator/> : (
+            <FlatList
+                data={data}
+                style={{ marginTop: 20, marginLeft: 200 }}
+                keyExtractor={({ id }, index) => id}
+                renderItem={({ item }) => (
+                    <View>
+                        <Text style = {{ color: 'black' }}>
+                          {item.doctor}
+                        </Text>
+                    </View>
+                )}
+            />
+            )}
+            <View style={{ marginLeft: 200, marginTop: -10,  }}>
+                <Text style={{ marginLeft: -10, color: 'black' }}>_____________________</Text>
+                <Text style={{ color: 'black' }}>Residential Doctor</Text>
+            </View>
         </View>
     );
 }
